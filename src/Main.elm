@@ -1,43 +1,31 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Browser
-import Html exposing (Html, div, text)
-
-
-
--- MAIN
+import Html exposing (div, text)
+import Html.Events exposing (onClick)
 
 
 main =
     Browser.sandbox { init = init, update = update, view = view }
 
 
-
--- MODEL
-
-
 type alias Model =
-    Int
+    { counter : Int }
 
 
-init : Model
+type Msg
+    = Increment
+
+
 init =
-    0
-
-
-
--- UPDATE
+    Model 0
 
 
 update msg model =
-    model
+    case msg of
+        Increment ->
+            { model | counter = model.counter + 1 }
 
 
-
--- VIEW
-
-
-view : Model -> Html msg
 view model =
-    div []
-        [ text "Hello, World!" ]
+    div [ onClick Increment ] [ text (String.fromInt model.counter) ]
