@@ -4,6 +4,7 @@ import Browser
 import Html exposing (Html, button, div, p, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
+import Style
 
 
 
@@ -22,6 +23,7 @@ type alias Model =
     { player : Player
     , cells : List (Maybe Player)
     , status : GameStatus
+    , winningCells : List Int
     }
 
 
@@ -38,7 +40,7 @@ type Player
 
 init : Model
 init =
-    Model X (List.repeat 9 Nothing) Playing
+    Model X (List.repeat 9 Nothing) Playing []
 
 
 
@@ -69,27 +71,40 @@ playAgain model =
     { model
         | status = Playing
         , cells = List.repeat 9 Nothing
+        , winningCells = []
     }
 
 
 updateGameStatus model =
-    if gameOver model then
-        { model | status = End }
+    let
+        idxs =
+            gameOver model
+    in
+    if List.length idxs > 0 then
+        { model | status = End, winningCells = idxs }
 
     else
         model
 
 
-gameOver : Model -> Bool
+gameOver : Model -> List Int
 gameOver model =
     threeInARow [ 0, 1, 2 ] model.player model.cells
-        || threeInARow [ 3, 4, 5 ] model.player model.cells
-        || threeInARow [ 6, 7, 8 ] model.player model.cells
-        || threeInARow [ 0, 3, 6 ] model.player model.cells
-        || threeInARow [ 1, 4, 7 ] model.player model.cells
-        || threeInARow [ 2, 5, 8 ] model.player model.cells
-        || threeInARow [ 0, 4, 8 ] model.player model.cells
-        || threeInARow [ 2, 4, 6 ] model.player model.cells
+        ++ threeInARow [ 3, 4, 5 ] model.player model.cells
+        ++ threeInARow [ 6, 7, 8 ] model.player model.cells
+        ++ threeInARow [ 0, 3, 6 ] model.player model.cells
+        ++ threeInARow [ 1, 4, 7 ] model.player model.cells
+        ++ threeInARow [ 2, 5, 8 ] model.player model.cells
+        ++ threeInARow [ 0, 4, 8 ] model.player model.cells
+        ++ threeInARow [ 2, 4, 6 ] model.player model.cells
+
+
+iff true false condition =
+    if condition then
+        true
+
+    else
+        false
 
 
 threeInARow idxs player cells =
@@ -99,6 +114,7 @@ threeInARow idxs player cells =
         |> List.filter (\t -> Tuple.second t == Just player)
         |> List.length
         |> (==) 3
+        |> iff idxs []
 
 
 clickCell selectedCell model =
@@ -133,8 +149,19 @@ nextPlayer model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "tic-tac-toe" ]
-        (viewCells model ++ [ viewStatus model, viewPlayAgainButton ])
+    div []
+        [ Style.ticTacToe
+        , div [ class "tic-tac-toe", class (toTieClass model) ] (viewCells model ++ [ viewStatus model, viewPlayAgainButton ])
+        ]
+
+
+toTieClass : Model -> String
+toTieClass model =
+    if model.status == Tie then
+        "tie"
+
+    else
+        ""
 
 
 viewPlayAgainButton =
@@ -158,17 +185,26 @@ statusToString model =
 
 
 viewCells model =
-    List.indexedMap viewCell model.cells
+    List.indexedMap (viewCell model.winningCells) model.cells
 
 
-viewCell : Int -> Maybe Player -> Html Msg
-viewCell i cell =
+viewCell : List Int -> Int -> Maybe Player -> Html Msg
+viewCell winningCells i cell =
     div
         [ class "cell"
+        , class (toWinningClass i winningCells)
         , class ("cell-" ++ String.fromInt i)
         , onClick (Click i)
         ]
         [ text (toString cell) ]
+
+
+toWinningClass i winningCells =
+    if List.member i winningCells then
+        "win"
+
+    else
+        ""
 
 
 toString : Maybe Player -> String
