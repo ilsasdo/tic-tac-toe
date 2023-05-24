@@ -25,12 +25,14 @@ Basics
 4. Tuple: `(1, 2)`, `Tuple.first (1, 2) == 1`
 5. Records: `type alias Persona = { nome: "Enrico", cognome: "Sasdelli" }`
 6. Tipi: `type GameStatus = WaitingToStart | Playing | GameOver`
-7. Funzioni:
+7. Maybe: 
+8. Funzioni:
    ```elm
    sum: Int -> Int -> Int
    sum a b =
        a + b
    ```
+9. Operazioni sulle funzioni `|>` e `>>`
 
 ---
 
