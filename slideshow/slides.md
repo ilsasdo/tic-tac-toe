@@ -19,10 +19,10 @@ Features
 
 Basics
 
-1. Operazioni: `1 + 2`
+1. Operazioni: `1 + 2 == 3`
 2. Stringhe: `"foo" ++ "bar"`
-3. Liste: `[1, 2, 3, 4]`
-4. Tuple: `(1, 2)`
+3. Liste: `[1, 2, 3, 4] ++ [5, 6, 7]`, `List.member 3 [1, 2, 3] == True`
+4. Tuple: `(1, 2)`, `Tuple.first (1, 2) == 1`
 5. Records: `type alias Persona = { nome: "Enrico", cognome: "Sasdelli" }`
 6. Tipi: `type GameStatus = WaitingToStart | Playing | GameOver`
 7. Funzioni:
