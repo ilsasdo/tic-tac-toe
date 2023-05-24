@@ -33,6 +33,8 @@ Basics
        a + b
    ```
 9. Operazioni sulle funzioni `|>` e `>>`
+10. Partial Application
+11. Pattern Matching
 
 ---
 
