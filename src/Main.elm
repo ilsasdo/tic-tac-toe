@@ -2,6 +2,7 @@ module Main exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)
+import Html.Attributes exposing (style)
 
 
 main =
@@ -17,4 +18,4 @@ update msg model =
 
 
 view model =
-    div [] [ text "Hello World!"]
+    div [style "background" "white"] [ text "Hello World!"]
