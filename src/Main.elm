@@ -1,7 +1,8 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Browser
-import Html exposing (div, text)
+import Html exposing (button, div, text)
+import Html.Attributes exposing (value)
 import Html.Events exposing (onClick)
 
 
@@ -28,4 +29,5 @@ update msg model =
 
 
 view model =
-    div [ onClick Increment ] [ text (String.fromInt model.counter) ]
+    div [] [ button [onClick Increment] [text "Click Me"]
+    , text (String.fromInt model.counter) ]
