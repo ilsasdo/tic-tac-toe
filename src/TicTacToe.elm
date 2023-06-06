@@ -1,4 +1,4 @@
-module Main exposing (init, main, update, view)
+module TicTacToe exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)
@@ -18,4 +18,4 @@ update msg model =
 
 
 view model =
-    div [style "background" "white"] [ text "Hello World!"]
+    div [ style "background" "white" ] [ text "Hello World!" ]
