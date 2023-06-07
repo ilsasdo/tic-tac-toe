@@ -1,8 +1,9 @@
-module Commons exposing (..)
+module Views exposing (..)
 
 import Element exposing (Element, fill, padding, rgb, text, width)
 import Element.Background as Background
-import Element.Font as Font
+import Element.Font as Font exposing (center)
+import Element.Input exposing (button)
 
 
 viewPage title rows =
@@ -55,4 +56,16 @@ viewValue label value =
             , Element.padding 10
             ]
             (text <| Debug.toString value)
+        ]
+
+
+viewButton : String -> msg -> Element msg
+viewButton label msg =
+    Element.row
+        [ width Element.fill
+        , center
+        , Font.family [ Font.monospace ]
+        , Font.size 24
+        ]
+        [ button [] { onPress = Just msg, label = text label }
         ]

@@ -1,6 +1,7 @@
 module TicTacToe exposing (init, main, update, view)
 
 import Browser
+import Element
 import Html exposing (div, text)
 import Html.Attributes exposing (style)
 
@@ -18,4 +19,4 @@ update msg model =
 
 
 view model =
-    div [ style "background" "white" ] [ text "Hello World!" ]
+    Element.layout []

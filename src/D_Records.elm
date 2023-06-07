@@ -1,9 +1,9 @@
-module B_Records exposing (init, main, update, view)
+module D_Records exposing (init, main, update, view)
 
 import Browser
-import Commons
 import Html exposing (div, text)
 import Html.Attributes exposing (style)
+import Views
 
 
 main =
@@ -24,13 +24,13 @@ update msg model =
 
 
 view model =
-    Commons.viewPage "Records"
-        [ Commons.viewTitle "Default Constructor:"
-        , Commons.viewValue "Person \"zoe\" \"lee\" ==" (Person "zoe" "lee")
-        , Commons.viewTitle "Default getters:"
-        , Commons.viewValue ".name model ==" (.name model)
-        , Commons.viewTitle "Update a record:"
-        , Commons.viewValue "{ model | name = \"Luigi\" } ==" { model | name = "Luigi" }
+    Views.viewPage "Records"
+        [ Views.viewTitle "Default Constructor:"
+        , Views.viewValue "Person \"zoe\" \"lee\" ==" (Person "zoe" "lee")
+        , Views.viewTitle "Default getters:"
+        , Views.viewValue ".name model ==" (.name model)
+        , Views.viewTitle "Update a record:"
+        , Views.viewValue "{ model | name = \"Luigi\" } ==" { model | name = "Luigi" }
 
         -- HERE: is model changed after the update?
         -- HERE: try to update multiple fields. Hint: separate values with ,

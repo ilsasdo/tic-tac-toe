@@ -1,7 +1,7 @@
-module A_Functions exposing (init, main, update, view)
+module C_Functions exposing (init, main, update, view)
 
 import Browser
-import Commons
+import Views
 
 
 main =
@@ -42,11 +42,11 @@ multiply a b =
 
 
 view model =
-    Commons.viewPage "It's All About Functions"
-        [ Commons.viewTitle "Function call:"
-        , Commons.viewValue "sum 1 2 == " (sum 1 2)
-        , Commons.viewTitle "Partial Application:"
-        , Commons.viewValue "sum 1 == " (sum 1)
+    Views.viewPage "It's All About Functions"
+        [ Views.viewTitle "Function call:"
+        , Views.viewValue "sum 1 2 == " (sum 1 2)
+        , Views.viewTitle "Partial Application:"
+        , Views.viewValue "sum 1 == " (sum 1)
 
         -- HERE try to call all the defined functions
         -- HERE try to use the function sum5

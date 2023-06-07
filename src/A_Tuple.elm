@@ -1,7 +1,7 @@
 module A_Tuple exposing (init, main, update, view)
 
 import Browser
-import Commons
+import Views
 
 
 main =
@@ -19,9 +19,9 @@ update msg model =
 
 
 view model =
-    Commons.viewPage "Tuple"
-        [ Commons.viewValue "Tupla:" model
-        , Commons.viewValue "Tuple.first:" (Tuple.first model)
+    Views.viewPage "Tuple"
+        [ Views.viewValue "Tupla:" model
+        , Views.viewValue "Tuple.first:" (Tuple.first model)
 
         -- HERE: try to add Tuple.second
         ]

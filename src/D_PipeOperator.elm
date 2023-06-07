@@ -1,7 +1,7 @@
-module B_PipeOperator exposing (init, main, update, view)
+module D_PipeOperator exposing (init, main, update, view)
 
 import Browser
-import Commons
+import Views
 
 
 main =
@@ -36,7 +36,7 @@ lessThan n x =
 
 
 view model =
-    Commons.viewPage "Pipes FTW"
-        [ Commons.viewValue "List values:" model
-        , Commons.viewValue "List filtered:" (filterValues model)
+    Views.viewPage "Pipes FTW"
+        [ Views.viewValue "List values:" model
+        , Views.viewValue "List filtered:" (filterValues model)
         ]
