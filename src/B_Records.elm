@@ -24,12 +24,15 @@ update msg model =
 
 
 view model =
-    Commons.viewPage "Records, not objects!"
-        [ Commons.viewValue "a record:" model
-        , Commons.viewTitle "Default Constructor:"
-        , Commons.viewValue "Person \"zoe\" \"lee\" == " (Person "zoe" "lee")
+    Commons.viewPage "Records"
+        [ Commons.viewTitle "Default Constructor:"
+        , Commons.viewValue "Person \"zoe\" \"lee\" ==" (Person "zoe" "lee")
         , Commons.viewTitle "Default getters:"
-        , Commons.viewValue ".name model == " (.name model)
+        , Commons.viewValue ".name model ==" (.name model)
         , Commons.viewTitle "Update a record:"
-        , Commons.viewValue "{ model | name = \"Luigi\" } == " { model | name = "Luigi" }
+        , Commons.viewValue "{ model | name = \"Luigi\" } ==" { model | name = "Luigi" }
+
+        -- HERE: is model changed after the update?
+        -- HERE: try to update multiple fields. Hint: separate values with ,
+        -- HERE: what if you don't fill all arguments to Person?
         ]

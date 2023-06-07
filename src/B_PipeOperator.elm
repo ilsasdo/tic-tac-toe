@@ -17,11 +17,10 @@ update msg model =
     model
 
 
-{-| HERE: multiply each results by 3 (Hint: use List.map)
--}
 filterValues list =
     list
         |> List.filter isEven
+        -- HERE: multiply each results by 3 (Hint: use List.map)
         |> List.filter (lessThan 30)
 
 
@@ -39,5 +38,5 @@ lessThan n x =
 view model =
     Commons.viewPage "Pipes FTW"
         [ Commons.viewValue "List values:" model
-        , Commons.viewValue "List modified:" (filterValues model)
+        , Commons.viewValue "List filtered:" (filterValues model)
         ]

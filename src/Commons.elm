@@ -6,11 +6,10 @@ import Element.Font as Font
 
 
 viewPage title rows =
-    Element.layout [] <|
+    Element.layout [ Background.color (rgb 1 1 1) ] <|
         Element.column
             [ Font.family [ Font.monospace ]
             , width fill
-            , Background.color (rgb 1 1 1)
             ]
         <|
             [ Element.el

@@ -16,35 +16,27 @@ update msg model =
     model
 
 
-
--- a simple function
-
-
+{-| a simple function
+-}
 sum a b =
     a + b
 
 
-
--- a partially applied function
-
-
+{-| a partially applied function
+-}
 sum5 =
     sum 5
 
 
-
--- we can also define types
-
-
+{-| we can declare types
+-}
 concat : String -> String -> String
 concat a b =
     a ++ b
 
 
-
--- even operators are functions!
-
-
+{-| even operators are functions!
+-}
 multiply a b =
     (*) a b
 

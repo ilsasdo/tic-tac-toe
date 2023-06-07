@@ -19,7 +19,7 @@ update msg model =
 
 
 view model =
-    Commons.viewPage "Tupla"
+    Commons.viewPage "Tuple"
         [ Commons.viewValue "Tupla:" model
         , Commons.viewValue "Tuple.first:" (Tuple.first model)
 
