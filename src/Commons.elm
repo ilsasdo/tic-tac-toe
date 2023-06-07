@@ -1,17 +1,8 @@
 module Commons exposing (..)
 
-import Element exposing (Element, el, fill, padding, row, text, width)
+import Element exposing (Element, fill, padding, rgb, text, width)
+import Element.Background as Background
 import Element.Font as Font
-import Html.Attributes exposing (style)
-
-
-fullPage =
-    [ style "background" "white"
-    , style "height" "100vh"
-    , style "text-align" "center"
-    , style "font-family" "monospace"
-    , style "font-size" "24pt"
-    ]
 
 
 viewPage title rows =
@@ -19,6 +10,7 @@ viewPage title rows =
         Element.column
             [ Font.family [ Font.monospace ]
             , width fill
+            , Background.color (rgb 1 1 1)
             ]
         <|
             [ Element.el
