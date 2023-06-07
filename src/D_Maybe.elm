@@ -27,8 +27,5 @@ view model =
 
 maybeToString maybe =
     case maybe of
-        Just "my value" ->
-            "my value"
-
-        Nothing ->
-            "nothing"
+        Just value ->
+            value

@@ -1,8 +1,7 @@
 module A_Functions exposing (init, main, update, view)
 
 import Browser
-import Html exposing (div, text)
-import Html.Attributes exposing (style)
+import Commons
 
 
 main =
@@ -17,11 +16,46 @@ update msg model =
     model
 
 
+
+-- a simple function
+
+
+sum a b =
+    a + b
+
+
+
+-- a partially applied function
+
+
+sum5 =
+    sum 5
+
+
+
+-- we can also define types
+
+
+concat : String -> String -> String
+concat a b =
+    a ++ b
+
+
+
+-- even operators are functions!
+
+
+multiply a b =
+    (*) a b
+
+
 view model =
-    div
-        [ style "background" "white"
-        , style "text-align" "center"
-        , style "font-family" "monospace"
-        , style "font-size" "24pt"
+    Commons.viewPage "It's All About Functions"
+        [ Commons.viewTitle "Function call:"
+        , Commons.viewValue "sum 1 2 == " (sum 1 2)
+        , Commons.viewTitle "Partial Application:"
+        , Commons.viewValue "sum 1 == " (sum 1)
+
+        -- HERE try to call all the defined functions
+        -- HERE try to use the function sum5
         ]
-        [ text "Hello World!" ]
