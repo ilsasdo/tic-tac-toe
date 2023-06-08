@@ -16,8 +16,6 @@ type alias Model =
     { id : Int, quote : String, author : String }
 
 
-{-| HERE: try adding a new event to change the increment amount
--}
 type Msg
     = GetQuote
     | NewQuote Int
