@@ -1,13 +1,32 @@
-module Main exposing (init, main, update, view)
+module TicTacToe exposing (init, main, update, view)
 
 import Browser
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (style)
 
 
+
+{-
+   Walkthrough:
+      1. implement 'playerToString'
+      2. cells must be a Maybe Player
+      3. Add a new Msg for the user to click on a Cell
+      4. When user clicks on a cell, set that cell to current player
+      5. When the user clicks on a cell, we must change the next player
+      6. Only empty cells must be clickable
+      7. determine endgame:
+        1. write a function "isPlayer" to determine if the cell at a given index is equals to a Player
+        2. write a function "isTris" to determine if three given index contains the same player
+        3. write a function "isTie" to determine if all cells are filled in but no one won
+        4. write a function "updateGameStatus" to update the game status
+      8. Add a new button to start a new game
+-}
+
+
 type alias Model =
     { cells : List Player
     , currentPlayer : Player
+    , status : GameStatus
     }
 
 
@@ -16,60 +35,21 @@ type Player
     | O
 
 
+type GameStatus
+    = Playing Player
+    | GameOver (Maybe Player)
+
+
 main =
     Browser.sandbox { init = init, update = update, view = view }
 
 
 init =
-    Model [ X, X, X, O, O, O, X, X, X ] X
+    Model [ X, X, X, O, O, O, X, X, X ] X (Playing X)
 
 
 update msg model =
     model
-
-
-isTris : List Int -> Player -> List (Maybe Player) -> Bool
-isTris indexes player list =
-    indexes
-        |> List.all (isPlayer player list)
-
-
-isPlayer : Player -> List (Maybe Player) -> Int -> Bool
-isPlayer player list index =
-    list
-        |> List.drop index
-        |> List.head
-        |> Maybe.withDefault Nothing
-        |> (==) (Just player)
-
-
-nextPlayer model =
-    { model | currentPlayer = opponent model.currentPlayer }
-
-
-opponent player =
-    case player of
-        X ->
-            O
-
-        O ->
-            X
-
-
-tickCell index model =
-    { model
-        | cells =
-            List.indexedMap
-                (\i ->
-                    \v ->
-                        if i == index then
-                            Just model.currentPlayer
-
-                        else
-                            v
-                )
-                model.cells
-    }
 
 
 view model =
@@ -78,25 +58,20 @@ view model =
         , style "width" "650px"
         ]
         (List.indexedMap viewCell model.cells
-            ++ [ viewCurrentPlayer model.currentPlayer
-               , viewWinner model.winner
+            ++ [ viewGameStatus model.status
                ]
         )
 
 
-viewWinner player =
-    case player of
-        Nothing ->
-            text ""
+viewGameStatus gameStatus =
+    case gameStatus of
+        Playing player ->
+            div [ style "font-size" "36pt" ]
+                [ text ("Tocca al giocatore: " ++ playerToString player) ]
 
-        Just a ->
+        GameOver player ->
             div [ style "font-size" "36pt" ]
                 [ text ("Ha vinto il giocatore: " ++ playerToString player) ]
-
-
-viewCurrentPlayer player =
-    div [ style "font-size" "36pt" ]
-        [ text ("Tocca al giocatore: " ++ playerToString player) ]
 
 
 viewCell index cell =
