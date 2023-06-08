@@ -26,5 +26,6 @@ view model =
 
 
 maybeToString maybe =
-    if maybe == Nothing then
-        "Nothing"
+    case maybe of
+        Nothing ->
+            "Nothing"
