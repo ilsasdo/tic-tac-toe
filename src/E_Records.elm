@@ -1,4 +1,4 @@
-module D_Records exposing (init, main, update, view)
+module E_Records exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)
@@ -24,13 +24,13 @@ update msg model =
 
 
 view model =
-    Views.viewPage "Records"
-        [ Views.viewTitle "Default Constructor:"
-        , Views.viewValue "Person \"zoe\" \"lee\" ==" (Person "zoe" "lee")
-        , Views.viewTitle "Default getters:"
-        , Views.viewValue ".name model ==" (.name model)
-        , Views.viewTitle "Update a record:"
-        , Views.viewValue "{ model | name = \"Luigi\" } ==" { model | name = "Luigi" }
+    Views.page "Records"
+        [ Views.title "Default Constructor:"
+        , Views.example "Person \"zoe\" \"lee\" ==" (Person "zoe" "lee")
+        , Views.title "Default getters:"
+        , Views.example ".name model ==" (.name model)
+        , Views.title "Update a record:"
+        , Views.example "{ model | name = \"Luigi\" } ==" { model | name = "Luigi" }
 
         -- HERE: is model changed after the update?
         -- HERE: try to update multiple fields. Hint: separate values with ,

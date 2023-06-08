@@ -1,4 +1,4 @@
-module D_PipeOperator exposing (init, main, update, view)
+module D_Composition exposing (init, main, update, view)
 
 import Browser
 import Views
@@ -19,14 +19,8 @@ update msg model =
 
 filterValues list =
     list
-        |> List.filter isEven
-        -- HERE: multiply each results by 3 (Hint: use List.map)
+        |> List.filter (not << isEven)
         |> List.filter (lessThan 30)
-
-
-filterEvenlyIndexed list =
-    -- HERE: try to use List.indexedMap to filter only evenly indexed values
-    list
 
 
 isEven a =
@@ -41,7 +35,10 @@ lessThan n x =
 
 
 view model =
-    Views.page "Pipes FTW"
-        [ Views.example "List values:" model
+    Views.page "Function Composition"
+        [ Views.title "Turns two functions into a new one: (a -> b) -> (b -> c) -> (a -> c)"
+        , Views.example "List values:" model
         , Views.example "List filtered:" (filterValues model)
+
+        -- HERE: try to use List.indexedMap to filter only evenly indexed values
         ]

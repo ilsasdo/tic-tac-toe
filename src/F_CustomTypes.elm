@@ -1,4 +1,4 @@
-module E_CustomTypes exposing (init, main, update, view)
+module F_CustomTypes exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)
@@ -42,13 +42,13 @@ update msg model =
 
 
 view model =
-    Views.viewPage "Types"
-        [ Views.viewValue "GameStatus:" Playing
-        , Views.viewTitle "Types with informations"
-        , Views.viewValue "Winner \"Mario\" ==" (Winner "Mario")
-        , Views.viewTitle "Variants with different Types:"
-        , Views.viewValue "IndianaJones 1 ==" (IndianaJones 1)
-        , Views.viewValue "IndianaJones \"2\" ==" (IndianaJones "2")
+    Views.page "Types"
+        [ Views.example "GameStatus:" Playing
+        , Views.title "Types with informations"
+        , Views.example "Winner \"Mario\" ==" (Winner "Mario")
+        , Views.title "Variants with different Types:"
+        , Views.example "IndianaJones 1 ==" (IndianaJones 1)
+        , Views.example "IndianaJones \"2\" ==" (IndianaJones "2")
         ]
 
 

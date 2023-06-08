@@ -17,9 +17,9 @@ update msg model =
 
 
 view model =
-    Views.viewPage "Call Me Maybe"
-        [ Views.viewValue "Maybe:" model
-        , Views.viewValue "maybeToString:" (maybeToString Nothing)
+    Views.page "Call Me Maybe"
+        [ Views.example "Maybe:" model
+        , Views.example "maybeToString:" (maybeToString Nothing)
 
         -- HERE: try to render the model
         ]

@@ -1,71 +1,96 @@
 module Views exposing (..)
 
-import Element exposing (Element, fill, padding, rgb, text, width)
-import Element.Background as Background
-import Element.Font as Font exposing (center)
-import Element.Input exposing (button)
+import Html exposing (Html, label)
+import Html.Attributes exposing (style, type_, value)
+import Html.Events exposing (onClick, onInput)
+import String exposing (fromInt)
 
 
-viewPage title rows =
-    Element.layout [ Background.color (rgb 1 1 1) ] <|
-        Element.column
-            [ Font.family [ Font.monospace ]
-            , width fill
-            ]
-        <|
-            [ Element.el
-                [ width Element.fill, Font.center, Font.size 48, Font.bold, padding 100 ]
-                (text title)
-            ]
-                ++ rows
-
-
-viewTitle : String -> Element msg
-viewTitle title =
-    Element.row
-        [ width Element.fill
-        , Font.family [ Font.monospace ]
-        , Font.size 36
-        , Element.paddingEach { top = 80, left = 0, right = 0, bottom = 0 }
+page pageTitle rows =
+    Html.div [ style "font-family" "monospace" ] <|
+        [ Html.node "style"
+            []
+            [ Html.text """
+        body {
+            background-color: white;
+        }
+        """ ]
+        , Html.h1
+            [ style "text-align" "center", style "font-size" "36pt" ]
+            [ Html.text pageTitle ]
         ]
-        [ Element.el
-            [ width (Element.fillPortion 1)
-            , Font.center
-            , Font.color (Element.rgb 0.7 0.7 0.7)
-            ]
-            (text title)
-        ]
+            ++ rows
 
 
-viewValue : String -> a -> Element msg
-viewValue label value =
-    Element.row
-        [ width Element.fill
-        , Font.family [ Font.monospace ]
-        , Font.size 24
+title : String -> Html msg
+title text =
+    Html.div
+        [ style "font-size" "18pt"
+        , style "color" "slategray"
         ]
-        [ Element.el
-            [ width (Element.fillPortion 1)
-            , Font.alignRight
-            , Font.color (Element.rgb 0.3 0.3 0.8)
+        [ Html.h2
+            [ style "margin-bottom" "0pt"
+            , style "text-align" "center"
             ]
-            (text label)
-        , Element.el
-            [ width (Element.fillPortion 1)
-            , Font.alignLeft
-            , Element.padding 10
-            ]
-            (text <| Debug.toString value)
+            [ Html.text text ]
         ]
 
 
-viewButton : String -> msg -> Element msg
-viewButton label msg =
-    Element.row
-        [ width Element.fill
-        , center
-        , Font.family [ Font.monospace ]
-        , Font.size 24
+example : String -> a -> Html msg
+example label value =
+    Html.div
+        [ style "margin-bottom" "10pt"
+        , style "font-size" "24pt"
         ]
-        [ button [] { onPress = Just msg, label = text label }
+        [ Html.div
+            [ style "width" "50%"
+            , style "display" "inline-block"
+            , style "text-align" "right"
+            , style "color" "darkslateblue"
+            ]
+            [ Html.span [ style "padding-right" "10pt" ] [ Html.text label ] ]
+        , Html.div
+            [ style "width" "50%"
+            , style "display" "inline-block"
+            , style "color" "darkorange"
+            ]
+            [ Html.text <| Debug.toString value ]
+        ]
+
+
+button : String -> msg -> Html msg
+button label msg =
+    Html.div
+        [ style "margin-bottom" "10pt"
+        , style "font-size" "24pt"
+        ]
+        [ Html.div
+            [ style "width" "50%"
+            , style "display" "inline-block"
+            , style "text-align" "right"
+            , style "color" "darkslateblue"
+            ]
+            [ Html.button [ onClick msg ] [ Html.text label ] ]
+        ]
+
+
+inputNumber : String -> Int -> (Int -> msg) -> Html msg
+inputNumber label val msg =
+    Html.div
+        [ style "margin-bottom" "10pt"
+        , style "font-size" "24pt"
+        ]
+        [ Html.div
+            [ style "width" "50%"
+            , style "display" "inline-block"
+            , style "text-align" "right"
+            , style "color" "darkslateblue"
+            ]
+            [ Html.span [ style "padding-right" "10pt" ] [ Html.text label ] ]
+        , Html.div
+            [ style "width" "50%"
+            , style "display" "inline-block"
+            , style "color" "darkslateblue"
+            ]
+            [ Html.input [ type_ "number", onInput (String.toInt >> Maybe.withDefault val >> msg), value (String.fromInt val) ] [] ]
         ]

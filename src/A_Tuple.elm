@@ -19,9 +19,9 @@ update msg model =
 
 
 view model =
-    Views.viewPage "Tuple"
-        [ Views.viewValue "Tupla:" model
-        , Views.viewValue "Tuple.first:" (Tuple.first model)
+    Views.page "Tuple"
+        [ Views.example "model ==" model
+        , Views.example "Tuple.first model ==" (Tuple.first model)
 
         -- HERE: try to add Tuple.second
         ]
