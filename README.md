@@ -19,7 +19,7 @@ Workshop project to learn Elm.
 
 ## Workshop
 
-* [Start Here](https://shorturl.at/bBEU4) 
+* [Start Here](https://bit.ly/elmtictactoe) 
 
 
 ## Refs
