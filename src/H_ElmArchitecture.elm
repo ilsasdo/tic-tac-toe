@@ -1,4 +1,4 @@
-module G_ElmArchitecture exposing (init, main, update, view)
+module H_ElmArchitecture exposing (init, main, update, view)
 
 import Browser
 import Html exposing (Html)

@@ -1,4 +1,4 @@
-module E_Records exposing (init, main, update, view)
+module F_Records exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)

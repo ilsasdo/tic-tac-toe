@@ -19,7 +19,7 @@ import Html.Attributes exposing (style)
         2. write a function "isTris" to determine if three given index contains the same player
         3. write a function "isTie" to determine if all cells are filled in but no one won
         4. write a function "updateGameStatus" to update the game status
-      8. Add a new button to start a new game
+      8. Add a button to start a new game
 -}
 
 
@@ -87,4 +87,4 @@ viewCell index cell =
 
 
 playerToString player =
-    "IMPLEMENT ME!"
+    "🤯"
