@@ -1,4 +1,4 @@
-module A_Tuple exposing (init, main, update, view)
+module Slides exposing (init, main, update, view)
 
 import Browser
 import Views
@@ -9,8 +9,6 @@ main =
 
 
 init =
-    -- HERE: try to change tuple values
-    -- HERE: you can also use the syntax ("a", "b") to instance a Tuple
     Tuple.pair "a" "b"
 
 

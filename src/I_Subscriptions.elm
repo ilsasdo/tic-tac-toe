@@ -13,7 +13,7 @@ main =
 
 
 type alias Model =
-    { id : Int, quote : String, author : String }
+    { loading : Bool, id : Int, quote : String, author : String }
 
 
 type Msg
@@ -24,7 +24,7 @@ type Msg
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Model 0 "" "", Cmd.none )
+    ( Model False 0 "" "", Cmd.none )
 
 
 subscriptions model =
@@ -37,7 +37,7 @@ update msg model =
             ( model, Random.generate NewQuote (Random.int 1 100) )
 
         NewQuote quoteId ->
-            ( { model | id = quoteId }
+            ( { model | id = quoteId, loading = True }
             , Http.get
                 { url = "https://dummyjson.com/quotes/" ++ String.fromInt quoteId
                 , expect = Http.expectJson GotQuote quoteDecoder
@@ -47,7 +47,7 @@ update msg model =
         GotQuote result ->
             case result of
                 Ok quote ->
-                    ( quote, Cmd.none )
+                    ( { model | loading = False, id = quote.id, quote = quote.quote, author = quote.author }, Cmd.none )
 
                 Err _ ->
                     ( { model | quote = "Error" }, Cmd.none )
@@ -55,7 +55,7 @@ update msg model =
 
 quoteDecoder : Decoder Model
 quoteDecoder =
-    map3 Model
+    map3 (Model False)
         (field "id" int)
         (field "quote" string)
         (field "author" string)
@@ -66,5 +66,5 @@ view model =
     Views.page "Subscriptions"
         [ Views.title model.quote
         , Views.title model.author
-        , Views.button "Get a Quote!" GetQuote
+        , Views.loadingButton model.loading "Get a Quote!" GetQuote
         ]

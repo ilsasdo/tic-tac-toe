@@ -1,0 +1,58 @@
+module B_PipeOperator exposing (init, main, update, view)
+
+import Browser
+import Views
+
+
+main =
+    Browser.sandbox { init = init, update = update, view = view }
+
+
+init =
+    Nothing
+
+
+update msg model =
+    model
+
+
+trasforma_senzaPipe list =
+    List.map ((*) 2) (List.filter isEven (List.filter (lessThan 30) list))
+
+
+{-| Con gli operatori pipe possiamo concatenare più funzioni per ottenere un valore:
+(|>): a -> (a -> b) -> b
+(<|): (a -> b) -> a -> b
+-}
+trasforma list =
+    list
+        |> List.filter isEven
+        |> List.filter (lessThan 30)
+        |> List.map ((*) 2)
+
+
+isEven a =
+    remainderBy 2 a == 0
+
+
+{-| Può sembrare strano, ma bisogna ricordarsi che per convenzione in Elm
+l'ultimo argomento è "il soggetto" della funzione.
+Questo torna utile perché consente di concatenare le funzioni e semplifica la Partial Application
+-}
+lessThan n x =
+    x < n
+
+
+view model =
+    Views.page "Pipes FTW"
+        [ Views.example "List:" [ 1, 2, 3, 4 ]
+        , Views.example "Pari e minori di 30:" (trasforma [ 11, 22, 33, 44 ])
+
+        {- ESERCIZIO:
+           Modifica la funzione "trasforma" così da ottenere True
+           se la somma dei valori è dispari e False altrimenti
+
+           Hint: usa List.foldl ( <https://package.elm-lang.org/packages/elm/core/latest/List#foldl> )
+
+        -}
+        ]

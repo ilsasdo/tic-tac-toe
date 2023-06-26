@@ -15,11 +15,11 @@ import Html.Attributes exposing (style)
       5. When the user clicks on a cell, we must change the next player
       6. Only empty cells must be clickable
       7. determine endgame:
-        1. write a function "isPlayer" to determine if the cell at a given index is equals to a Player
-        2. write a function "isTris" to determine if three given index contains the same player
-        3. write a function "isTie" to determine if all cells are filled in but no one won
-        4. write a function "updateGameStatus" to update the game status
+        1. write a function "isTris" to determine if three given index contains the same player
+        2. write a function "isTie" to determine if all cells are filled in but no one won
+        3. write a function "updateGameStatus" to update the game status
       8. Add a button to start a new game
+      9. When a user wins, change the winning cells background color to red
 -}
 
 
@@ -37,7 +37,6 @@ type Player
 
 type GameStatus
     = Playing Player
-    | GameOver (Maybe Player)
 
 
 main =
@@ -68,10 +67,6 @@ viewGameStatus gameStatus =
         Playing player ->
             div [ style "font-size" "36pt" ]
                 [ text ("Tocca al giocatore: " ++ playerToString player) ]
-
-        GameOver player ->
-            div [ style "font-size" "36pt" ]
-                [ text ("Ha vinto il giocatore: " ++ playerToString player) ]
 
 
 viewCell index cell =

@@ -58,8 +58,16 @@ example label value =
         ]
 
 
-button : String -> msg -> Html msg
-button label msg =
+loadingButton : Bool -> String -> msg -> Html msg
+loadingButton loading label msg =
+    let
+        buttonLabel =
+            if loading then
+                label ++ "..."
+
+            else
+                label
+    in
     Html.div
         [ style "margin-bottom" "10pt"
         , style "font-size" "24pt"
@@ -70,8 +78,16 @@ button label msg =
             , style "text-align" "right"
             , style "color" "darkslateblue"
             ]
-            [ Html.button [ onClick msg ] [ Html.text label ] ]
+            [ Html.button
+                [ onClick msg ]
+                [ Html.text buttonLabel ]
+            ]
         ]
+
+
+button : String -> msg -> Html msg
+button label msg =
+    loadingButton False label msg
 
 
 inputNumber : String -> Int -> (Int -> msg) -> Html msg

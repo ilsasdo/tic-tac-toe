@@ -1,4 +1,4 @@
-module F_Records exposing (init, main, update, view)
+module E_Records exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)
@@ -10,9 +10,16 @@ main =
     Browser.sandbox { init = init, update = update, view = view }
 
 
+{-| Possiamo definire degli alias per rendere i nostri dati più chiari
+-}
+type alias Age =
+    Int
+
+
 type alias Person =
-    -- HERE: try adding the age field
-    { name : String, surname : String }
+    { name : String
+    , surname : String
+    }
 
 
 init =
@@ -31,8 +38,13 @@ view model =
         , Views.example ".name model ==" (.name model)
         , Views.title "Update a record:"
         , Views.example "{ model | name = \"Luigi\" } ==" { model | name = "Luigi" }
-
-        -- HERE: is model changed after the update?
-        -- HERE: try to update multiple fields. Hint: separate values with ,
-        -- HERE: what if you don't fill all arguments to Person?
         ]
+
+
+
+{- ESERCIZIO:
+
+   1.  Cosa succede se aggiungi il campo "age" al Modello?
+   2.  Prova a modificare due campi dello stesso Record
+
+-}
