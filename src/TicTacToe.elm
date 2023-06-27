@@ -56,23 +56,23 @@ update msg model =
             init
 
         ClickCell index ->
-            model
-                |> playerClickCell index
+            case model.status of
+                Playing player ->
+                    model
+                        |> playerClickCell player index
 
 
-playerClickCell index model =
-    { model | cells = List.indexedMap (updateCellValue index model.status) model.cells }
+playerClickCell player index model =
+    { model | cells = List.indexedMap (updateCellValue player index) model.cells }
 
 
-updateCellValue : Int -> GameStatus -> Int -> Maybe Player -> Maybe Player
-updateCellValue selectedIndex status cellIndex cellValue =
-    case status of
-        Playing player ->
-            if cellIndex == selectedIndex && cellValue == Nothing then
-                Just player
+updateCellValue : Player -> Int -> Int -> Maybe Player -> Maybe Player
+updateCellValue player selectedIndex cellIndex cellValue =
+    if cellIndex == selectedIndex && cellValue == Nothing then
+        Just player
 
-            else
-                cellValue
+    else
+        cellValue
 
 
 view model =
