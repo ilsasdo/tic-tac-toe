@@ -108,6 +108,31 @@ isEmptyCell index cells =
         |> (==) Nothing
 
 
+nextPlayer player index model =
+    if isEmptyCell index model.cells then
+        { model | status = Playing (getOpponent player) }
+
+    else
+        model
+
+
+getOpponent player =
+    case player of
+        X ->
+            O
+
+        O ->
+            X
+
+
+isEmptyCell index cells =
+    cells
+        |> List.drop index
+        |> List.head
+        |> Maybe.withDefault (Just X)
+        |> (==) Nothing
+
+
 playerClickCell player index model =
     { model | cells = List.indexedMap (updateCellValue player index) model.cells }
 
