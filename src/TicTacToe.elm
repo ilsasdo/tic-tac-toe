@@ -98,4 +98,9 @@ viewCell index cell =
 
 
 playerToString player =
-    "🤯"
+    case player of
+        X ->
+            "✖️"
+
+        O ->
+            "⭕"
