@@ -51,19 +51,37 @@ update msg model =
 view model =
     div
         [ style "background" "white"
-        , style "width" "650px"
+        , style "display" "flex"
+        , style "flex-direction" "column"
         ]
-        (List.indexedMap viewCell model.cells
-            ++ [ viewGameStatus model.status
-               ]
-        )
+        [ viewGrid model.cells
+        , viewGameStatus model.status
+        ]
 
 
 viewGameStatus gameStatus =
     case gameStatus of
         Playing player ->
-            div [ style "font-size" "36pt" ]
+            div
+                [ style "font-size" "36pt"
+                , style "text-align" "center"
+                ]
                 [ text ("Tocca al giocatore: " ++ playerToString player) ]
+
+
+viewGrid cells =
+    div
+        [ style "display" "flex"
+        , style "justify-content" "center"
+        ]
+        [ div
+            [ style "display" "flex"
+            , style "flex-wrap" "wrap"
+            , style "width" "650px"
+            , style "justify-content" "center"
+            ]
+            (List.indexedMap viewCell cells)
+        ]
 
 
 viewCell index cell =
