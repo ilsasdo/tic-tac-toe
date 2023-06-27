@@ -9,7 +9,7 @@ import Html.Attributes exposing (style)
 {-
    Walkthrough:
       1. implement 'playerToString'
-      2. cells must be a Maybe Player
+      2. cells must contains Maybe Player
       3. Add a new Msg for the user to click on a Cell
       4. When user clicks on a cell, set that cell to current player
       5. When the user clicks on a cell, we must change the next player
