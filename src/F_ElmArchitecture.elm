@@ -29,11 +29,12 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    Views.page "Elm Architecture"
-        [ Views.image ""
-        , Views.title "The Elm Architecture, illustration by Kolja Wilcke, licensed under CC BY 4.0."
+    Views.page "The Elm Architecture"
+        [ Views.image "https://raw.githubusercontent.com/ilsasdo/tic-tac-toe/e1c939d58885d8efb29323c44d799725823156d1/assets/elm-architecture.jpg" "The Elm Architecture, illustration by Kolja Wilcke, licensed under CC BY 4.0."
         , Views.example "Counter:" model.counter
         , Views.button "Click Me!" Increment
 
-        -- HERE, To view a numbered input, use View.numberInput: label value message
+        {- ESERCIZIO:
+           Aggiungi un nuovo pulsante che Decrementa di un valore n
+        -}
         ]

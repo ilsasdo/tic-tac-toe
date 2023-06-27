@@ -36,11 +36,12 @@ title text =
         ]
 
 
-image : String -> Html msg
-image src =
+image : String -> String -> Html msg
+image src description =
     Html.div
         [ style "text-align" "center" ]
         [ Html.img [ Attributes.src src ] []
+        , Html.p [] [ Html.text description ]
         ]
 
 
