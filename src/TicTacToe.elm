@@ -59,7 +59,33 @@ update msg model =
             case model.status of
                 Playing player ->
                     model
+                        |> nextPlayer player index
                         |> playerClickCell player index
+
+
+nextPlayer player index model =
+    if isEmptyCell index model.cells then
+        { model | status = Playing (getOpponent player) }
+
+    else
+        model
+
+
+getOpponent player =
+    case player of
+        X ->
+            O
+
+        O ->
+            X
+
+
+isEmptyCell index cells =
+    cells
+        |> List.drop index
+        |> List.head
+        |> Maybe.withDefault (Just X)
+        |> (==) Nothing
 
 
 playerClickCell player index model =
