@@ -8,24 +8,21 @@ import Html.Attributes exposing (style)
 
 {-
    Walkthrough:
-      1. implement 'playerToString'
-      2. cells must contains Maybe Player
-      3. Add a new Msg for the user to click on a Cell
-      4. When user clicks on a cell, set that cell to current player
-      5. When the user clicks on a cell, we must change the next player
-      6. Only empty cells must be clickable
-      7. determine endgame:
-        1. write a function "isTris" to determine if three given index contains the same player
-        2. write a function "isTie" to determine if all cells are filled in but no one won
-        3. write a function "updateGameStatus" to update the game status
-      8. Add a button to start a new game
-      9. When a user wins, change the winning cells background color to red
+      1. implementa 'playerToString' per renderizzare i due diversi giocatori
+      2. Inizialmente le celle devono essere vuote: usa Maybe Player per rappresentarle
+      3. Quando l'utente clicca su una cella vuota, quella cella viene valorizzata con il giocatore corrente
+      4. Quando l'utente clicca su una cella vuota, il giocatore corrente deve cambiare
+      5. Determina la fine gioco:
+        1. Scrivi una funzione "isTris" che dati tre indici di celle verifica che in ciascuno ci sia il giocatore richiesto.
+        2. Scrivi una funzione "setGameOver" che dato un Model, ne aggiorna lo status se l'utente corrente ha fatto Tris
+      6. Introduci e gestisci lo stato di Parità in caso nessun giocatore vinca
+      7. Aggiungi un bottone per cominciare una nuova partita
+      8. Quando un giocatore vince, colora di rosso le celle che hanno fatto Tris
 -}
 
 
 type alias Model =
     { cells : List Player
-    , currentPlayer : Player
     , status : GameStatus
     }
 
@@ -44,7 +41,7 @@ main =
 
 
 init =
-    Model [ X, X, X, O, O, O, X, X, X ] X (Playing X)
+    Model [ X, X, X, O, O, O, X, X, X ] (Playing X)
 
 
 update msg model =
