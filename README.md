@@ -2,32 +2,15 @@
 
 Workshop project to learn Elm.
 
-## TODO
-
-1. Sii Interattivo!!
-2. un esercizietto alla fine di ogni argomento
-3. sposta tuple e composition alla fine
-4. fai traccia passo passo per tic-tac-toe e metti vari step in vari branch su git
-   1. parti da una cella sola
-
-
-## Who Am I
-
-* Enrico
-* Senior Fullstack Developer @ MotorK
-* I like solving problems and ride motorbikes
-
-
-## Why learning Elm
-
-* It's a gentle introduction to functional programming
-* Forces you to stretch your mind
-* It's simple, elegant and effective
-
-
 ## Workshop
 
-* [Start Here](https://bit.ly/elmtictactoe) 
+* [Zero Setup](https://bit.ly/elmtictactoe)
+
+or
+
+* [Install Elm](https://guide.elm-lang.org/install/elm.html)
+  * [Install IntelliJ Elm Plugin](https://plugins.jetbrains.com/plugin/10268-elm)
+  * [Install VSCode Elm Plugin](https://marketplace.visualstudio.com/items?itemName=Elmtooling.elm-ls-vscode)
 
 
 ## Refs
