@@ -22,7 +22,7 @@ import Html.Attributes exposing (style)
 
 
 type alias Model =
-    { cells : List Player
+    { cells : List (Maybe Player)
     , status : GameStatus
     }
 
@@ -41,7 +41,7 @@ main =
 
 
 init =
-    Model [ X, X, X, O, O, O, X, X, X ] (Playing X)
+    Model (List.repeat 9 Nothing) (Playing X)
 
 
 update msg model =
@@ -94,7 +94,16 @@ viewCell index cell =
         , style "align-items" "center"
         , style "font-size" "48pt"
         ]
-        [ text (playerToString cell) ]
+        [ text (cellToString cell) ]
+
+
+cellToString cell =
+    case cell of
+        Just player ->
+            playerToString player
+
+        Nothing ->
+            ""
 
 
 playerToString player =
