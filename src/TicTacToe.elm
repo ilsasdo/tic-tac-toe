@@ -89,8 +89,9 @@ viewCell index cell =
         [ style "width" "200px"
         , style "height" "200px"
         , style "border" "1px solid black"
-        , style "display" "inline-block"
-        , style "vertical-align" "top"
+        , style "display" "flex"
+        , style "justify-content" "center"
+        , style "align-items" "center"
         , style "font-size" "48pt"
         ]
         [ text (playerToString cell) ]
