@@ -39,6 +39,7 @@ type GameStatus
 
 type Msg
     = NewGame
+    | ClickCell Int
 
 
 main =
@@ -53,6 +54,25 @@ update msg model =
     case msg of
         NewGame ->
             init
+
+        ClickCell index ->
+            model
+                |> playerClickCell index
+
+
+playerClickCell index model =
+    { model | cells = List.indexedMap (updateCellValue index model.status) model.cells }
+
+
+updateCellValue : Int -> GameStatus -> Int -> Maybe Player -> Maybe Player
+updateCellValue selectedIndex status cellIndex cellValue =
+    case status of
+        Playing player ->
+            if cellIndex == selectedIndex && cellValue == Nothing then
+                Just player
+
+            else
+                cellValue
 
 
 view model =
@@ -107,6 +127,7 @@ viewCell index cell =
         , style "justify-content" "center"
         , style "align-items" "center"
         , style "font-size" "48pt"
+        , onClick (ClickCell index)
         ]
         [ text (cellToString cell) ]
 
