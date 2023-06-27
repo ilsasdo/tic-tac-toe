@@ -1,4 +1,4 @@
-module H_ElmArchitecture exposing (init, main, update, view)
+module F_ElmArchitecture exposing (init, main, update, view)
 
 import Browser
 import Html exposing (Html)
@@ -13,8 +13,6 @@ type alias Model =
     { counter : Int }
 
 
-{-| HERE: try adding a new event to change the increment amount
--}
 type Msg
     = Increment
 
@@ -32,7 +30,9 @@ update msg model =
 view : Model -> Html Msg
 view model =
     Views.page "Elm Architecture"
-        [ Views.example "Counter:" model.counter
+        [ Views.image ""
+        , Views.title "The Elm Architecture, illustration by Kolja Wilcke, licensed under CC BY 4.0."
+        , Views.example "Counter:" model.counter
         , Views.button "Click Me!" Increment
 
         -- HERE, To view a numbered input, use View.numberInput: label value message

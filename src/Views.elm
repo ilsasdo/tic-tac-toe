@@ -1,7 +1,7 @@
 module Views exposing (..)
 
 import Html exposing (Html, label)
-import Html.Attributes exposing (style, type_, value)
+import Html.Attributes as Attributes exposing (style, type_, value)
 import Html.Events exposing (onClick, onInput)
 import String exposing (fromInt)
 
@@ -33,6 +33,14 @@ title text =
             , style "text-align" "center"
             ]
             [ Html.text text ]
+        ]
+
+
+image : String -> Html msg
+image src =
+    Html.div
+        [ style "text-align" "center" ]
+        [ Html.img [ Attributes.src src ] []
         ]
 
 

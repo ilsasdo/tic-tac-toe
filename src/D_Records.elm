@@ -1,4 +1,4 @@
-module E_Records exposing (init, main, update, view)
+module D_Records exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)
@@ -44,7 +44,7 @@ view model =
 
 {- ESERCIZIO:
 
-   1.  Cosa succede se aggiungi il campo "age" al Modello?
-   2.  Prova a modificare due campi dello stesso Record
+   1. Cosa succede se aggiungi il campo "age" al Modello?
+   2. Prova a modificare due campi dello stesso Record (Hint: separa con , i campi da aggiornare)
 
 -}

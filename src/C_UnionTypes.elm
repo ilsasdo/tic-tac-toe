@@ -1,4 +1,4 @@
-module D_UnionTypes exposing (init, main, update, view)
+module C_UnionTypes exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)
@@ -10,7 +10,7 @@ main =
     Browser.sandbox { init = init, update = update, view = view }
 
 
-{-| Un Tipo ha delle Varianti
+{-| Un Union Type ha delle Varianti
 -}
 type GameStatus
     = Waiting
@@ -24,7 +24,7 @@ type User
     | Anonymous
 
 
-{-| Un Tipo può essere associato a tipi generici
+{-| Un Tipo può essere associato a tipi generici (notare la minuscola)
 -}
 type Result a e
     = Ok a

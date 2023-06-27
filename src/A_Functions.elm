@@ -44,35 +44,19 @@ multiply a b =
     (*) a b
 
 
-{-| Possiamo utilizzare il costrutto "let" per definire valori intermedi
-e anche funzioni visibili solo all'interno della nostra funzione
--}
-letInFunction b =
-    let
-        a =
-            4
-
-        c =
-            sum 1 b
-
-        lambda =
-            \d e -> d * e
-    in
-    lambda a c
-
-
 view model =
     Views.page "It's All About Functions"
         [ Views.title "Esecuzione di una funzione:"
         , Views.example "sum 1 2 == " (sum 1 2)
         , Views.title "Partial Application:"
         , Views.example "sum 1 == " (sum 1)
-        , Views.example "lambda 3 2 == " ((\a b -> a * b) 3 2)
 
         {-
            ESERCIZIO:
-           Sottrai 10 a tutti i numeri di una lista usando una funzione parzialmente applicata
+           Crea una nuova funzione che faccia la sottrazione tra due numeri.
+           Utilizza questa nuova funzione in modo da sottrarre 10 a tutti i numeri di una lista.
+
+           Hint: guarda List.map -> https://package.elm-lang.org/packages/elm/core/latest/List#map
+
         -}
-        --, Views.title "Raddoppia i valori della lista"
-        --, Views.example "[1, 2, 3, 4]" (List.map ??? [1, 2, 3, 4])
         ]

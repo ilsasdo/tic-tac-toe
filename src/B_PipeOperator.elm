@@ -31,6 +31,15 @@ trasforma list =
         |> List.map ((*) 2)
 
 
+{-| La stessa operazione ma con l'operatore Left Pipe
+-}
+trasforma_reverse list =
+    List.map ((*) 2) <|
+        List.filter isEven <|
+            List.filter (lessThan 30) <|
+                list
+
+
 isEven a =
     remainderBy 2 a == 0
 
@@ -46,11 +55,13 @@ lessThan n x =
 view model =
     Views.page "Pipes FTW"
         [ Views.example "List:" [ 1, 2, 3, 4 ]
-        , Views.example "Pari e minori di 30:" (trasforma [ 11, 22, 33, 44 ])
+        , Views.example "trasforma:" (trasforma [ 11, 22, 33, 44 ])
+        , Views.example "trasforma_senzaPipe:" (trasforma_senzaPipe [ 11, 22, 33, 44 ])
+        , Views.example "trasforma_reverse:" (trasforma_reverse [ 11, 22, 33, 44 ])
 
         {- ESERCIZIO:
-           Modifica la funzione "trasforma" così da ottenere True
-           se la somma dei valori è dispari e False altrimenti
+           Modifica la funzione "trasforma" così da ottenere True se la somma
+           dei valori è dispari e False altrimenti
 
            Hint: usa List.foldl ( <https://package.elm-lang.org/packages/elm/core/latest/List#foldl> )
 

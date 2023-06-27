@@ -2,6 +2,14 @@
 
 Workshop project to learn Elm.
 
+## TODO
+
+1. Sii Interattivo!!
+2. un esercizietto alla fine di ogni argomento
+3. sposta tuple e composition alla fine
+4. fai traccia passo passo per tic-tac-toe e metti vari step in vari branch su git
+   1. parti da una cella sola
+
 
 ## Who Am I
 
