@@ -36,7 +36,7 @@ type Player
 type GameStatus
     = Playing Player
     | Tie
-    | GameOver Player
+    | GameOver Player (List Int)
 
 
 type Msg
@@ -68,19 +68,20 @@ update msg model =
                 Tie ->
                     model
 
-                GameOver player ->
+                GameOver player winningCells ->
                     model
 
 
 updateGameStatus player model =
+    let
+        winningCells =
+            findWinningCells player model.cells
+    in
     if isTie model.cells then
         { model | status = Tie }
 
-    else if playerHasWon player model.cells then
-        { model | status = GameOver player }
-
-    else if isTie model.cells then
-        { model | status = Tie }
+    else if playerHasWon winningCells then
+        { model | status = GameOver player winningCells }
 
     else
         model
@@ -93,21 +94,31 @@ isTie cells =
         |> (==) 0
 
 
-playerHasWon player cells =
-    isTris 0 1 2 player cells
-        || isTris 3 4 5 player cells
-        || isTris 6 7 8 player cells
-        || isTris 0 4 8 player cells
-        || isTris 6 4 2 player cells
-        || isTris 0 3 6 player cells
-        || isTris 1 4 7 player cells
-        || isTris 2 5 8 player cells
+findWinningCells : Player -> List (Maybe Player) -> List Int
+findWinningCells player cells =
+    [ [ 0, 1, 2 ]
+    , [ 3, 4, 5 ]
+    , [ 6, 7, 8 ]
+    , [ 0, 4, 8 ]
+    , [ 6, 4, 2 ]
+    , [ 0, 3, 6 ]
+    , [ 1, 4, 7 ]
+    , [ 2, 5, 8 ]
+    ]
+        |> List.filter (isTris player cells)
+        |> List.head
+        |> Maybe.withDefault []
 
 
-isTris a b c player cells =
+playerHasWon : List Int -> Bool
+playerHasWon indexes =
+    List.length indexes == 3
+
+
+isTris player cells indexes =
     cells
         |> List.indexedMap Tuple.pair
-        |> List.filter (\t -> List.member (Tuple.first t) [ a, b, c ] && Tuple.second t == Just player)
+        |> List.filter (\t -> List.member (Tuple.first t) indexes && Tuple.second t == Just player)
         |> List.length
         |> (==) 3
 
@@ -156,7 +167,7 @@ view model =
         , style "display" "flex"
         , style "flex-direction" "column"
         ]
-        [ viewGrid model.cells
+        [ viewGrid model.cells model.status
         , viewGameStatus model.status
         , viewStartNewGame
         ]
@@ -168,6 +179,7 @@ viewStartNewGame =
         ]
 
 
+viewGameStatus : GameStatus -> Html Msg
 viewGameStatus gameStatus =
     case gameStatus of
         Playing player ->
@@ -184,7 +196,7 @@ viewGameStatus gameStatus =
                 ]
                 [ text "La partita è finita in pareggio!" ]
 
-        GameOver player ->
+        GameOver player winningCells ->
             div
                 [ style "font-size" "36pt"
                 , style "text-align" "center"
@@ -192,7 +204,7 @@ viewGameStatus gameStatus =
                 [ text ("Ha Vinto il Giocatore: " ++ playerToString player) ]
 
 
-viewGrid cells =
+viewGrid cells gameStatus =
     div
         [ style "display" "flex"
         , style "justify-content" "center"
@@ -203,11 +215,15 @@ viewGrid cells =
             , style "width" "650px"
             , style "justify-content" "center"
             ]
-            (List.indexedMap viewCell cells)
+            (List.indexedMap (viewCell gameStatus) cells)
         ]
 
 
-viewCell index cell =
+viewCell gameStatus index cell =
+    let
+        bgColor =
+            gameStatusToColor gameStatus index
+    in
     div
         [ style "width" "200px"
         , style "height" "200px"
@@ -216,9 +232,26 @@ viewCell index cell =
         , style "justify-content" "center"
         , style "align-items" "center"
         , style "font-size" "48pt"
+        , style "background-color" bgColor
         , onClick (ClickCell index)
         ]
         [ text (cellToString cell) ]
+
+
+gameStatusToColor gameStatus index =
+    case gameStatus of
+        GameOver player winningCells ->
+            if List.member index winningCells then
+                "lightgreen"
+
+            else
+                "white"
+
+        Tie ->
+            "lightgray"
+
+        Playing player ->
+            "white"
 
 
 cellToString cell =
