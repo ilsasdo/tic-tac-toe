@@ -3,6 +3,7 @@ module TicTacToe exposing (init, main, update, view)
 import Browser
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (style)
+import Html.Events exposing (onClick)
 
 
 
@@ -36,6 +37,10 @@ type GameStatus
     = Playing Player
 
 
+type Msg
+    = NewGame
+
+
 main =
     Browser.sandbox { init = init, update = update, view = view }
 
@@ -45,7 +50,9 @@ init =
 
 
 update msg model =
-    model
+    case msg of
+        NewGame ->
+            init
 
 
 view model =
@@ -56,6 +63,13 @@ view model =
         ]
         [ viewGrid model.cells
         , viewGameStatus model.status
+        , viewStartNewGame
+        ]
+
+
+viewStartNewGame =
+    div [ style "text-align" "center" ]
+        [ Html.button [ onClick NewGame ] [ text "Nuova Partita" ]
         ]
 
 
