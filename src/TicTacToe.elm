@@ -35,6 +35,7 @@ type Player
 
 type GameStatus
     = Playing Player
+    | Tie
 
 
 type Msg
@@ -61,6 +62,25 @@ update msg model =
                     model
                         |> nextPlayer player index
                         |> playerClickCell player index
+                        |> updateGameStatus
+
+                Tie ->
+                    model
+
+
+updateGameStatus model =
+    if isTie model.cells then
+        { model | status = Tie }
+
+    else
+        model
+
+
+isTie cells =
+    cells
+        |> List.filter ((==) Nothing)
+        |> List.length
+        |> (==) 0
 
 
 nextPlayer player index model =
@@ -127,6 +147,13 @@ viewGameStatus gameStatus =
                 , style "text-align" "center"
                 ]
                 [ text ("Tocca al giocatore: " ++ playerToString player) ]
+
+        Tie ->
+            div
+                [ style "font-size" "36pt"
+                , style "text-align" "center"
+                ]
+                [ text "La partita è finita in pareggio!" ]
 
 
 viewGrid cells =
