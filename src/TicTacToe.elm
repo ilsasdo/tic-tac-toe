@@ -10,13 +10,13 @@ import Html.Attributes exposing (style)
    Walkthrough:
       1. implementa 'playerToString' per renderizzare i due diversi giocatori
       2. Inizialmente le celle devono essere vuote: usa Maybe Player per rappresentarle
-      3. Quando l'utente clicca su una cella vuota, quella cella viene valorizzata con il giocatore corrente
-      4. Quando l'utente clicca su una cella vuota, il giocatore corrente deve cambiare
-      5. Determina la fine gioco:
+      3. Aggiungi un bottone per cominciare una nuova partita
+      4. Quando l'utente clicca su una cella vuota, quella cella viene valorizzata con il giocatore corrente
+      5. Quando l'utente clicca su una cella vuota, il giocatore corrente deve cambiare
+      6. Introduci e gestisci lo stato di Parità in caso nessun giocatore vinca
+      7. Determina la fine gioco:
         1. Scrivi una funzione "isTris" che dati tre indici di celle verifica che in ciascuno ci sia il giocatore richiesto.
         2. Scrivi una funzione "setGameOver" che dato un Model, ne aggiorna lo status se l'utente corrente ha fatto Tris
-      6. Introduci e gestisci lo stato di Parità in caso nessun giocatore vinca
-      7. Aggiungi un bottone per cominciare una nuova partita
       8. Quando un giocatore vince, colora di rosso le celle che hanno fatto Tris
 -}
 
