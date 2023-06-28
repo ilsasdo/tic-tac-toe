@@ -37,7 +37,6 @@ type GameStatus
     = Playing Player
     | Tie
     | GameOver Player
-    | Tie
 
 
 type Msg
@@ -71,9 +70,6 @@ update msg model =
 
                 GameOver player ->
                     model
-
-        Tie ->
-            model
 
 
 updateGameStatus player model =
@@ -114,31 +110,6 @@ isTris a b c player cells =
         |> List.filter (\t -> List.member (Tuple.first t) [ a, b, c ] && Tuple.second t == Just player)
         |> List.length
         |> (==) 3
-
-
-nextPlayer player index model =
-    if isEmptyCell index model.cells then
-        { model | status = Playing (getOpponent player) }
-
-    else
-        model
-
-
-getOpponent player =
-    case player of
-        X ->
-            O
-
-        O ->
-            X
-
-
-isEmptyCell index cells =
-    cells
-        |> List.drop index
-        |> List.head
-        |> Maybe.withDefault (Just X)
-        |> (==) Nothing
 
 
 nextPlayer player index model =
@@ -219,13 +190,6 @@ viewGameStatus gameStatus =
                 , style "text-align" "center"
                 ]
                 [ text ("Ha Vinto il Giocatore: " ++ playerToString player) ]
-
-        Tie ->
-            div
-                [ style "font-size" "36pt"
-                , style "text-align" "center"
-                ]
-                [ text "La partita è finita in pareggio!" ]
 
 
 viewGrid cells =
