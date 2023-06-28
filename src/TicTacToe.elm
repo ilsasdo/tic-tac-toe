@@ -37,6 +37,7 @@ type GameStatus
     = Playing Player
     | Tie
     | GameOver Player
+    | Tie
 
 
 type Msg
@@ -71,6 +72,9 @@ update msg model =
                 GameOver player ->
                     model
 
+        Tie ->
+            model
+
 
 updateGameStatus player model =
     if isTie model.cells then
@@ -78,6 +82,9 @@ updateGameStatus player model =
 
     else if playerHasWon player model.cells then
         { model | status = GameOver player }
+
+    else if isTie model.cells then
+        { model | status = Tie }
 
     else
         model
@@ -212,6 +219,13 @@ viewGameStatus gameStatus =
                 , style "text-align" "center"
                 ]
                 [ text ("Ha Vinto il Giocatore: " ++ playerToString player) ]
+
+        Tie ->
+            div
+                [ style "font-size" "36pt"
+                , style "text-align" "center"
+                ]
+                [ text "La partita è finita in pareggio!" ]
 
 
 viewGrid cells =
