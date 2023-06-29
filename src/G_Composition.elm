@@ -1,4 +1,4 @@
-module H_Composition exposing (init, main, update, view)
+module G_Composition exposing (init, main, update, view)
 
 import Browser
 import Views

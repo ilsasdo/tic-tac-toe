@@ -1,4 +1,4 @@
-module G_Tuple exposing (init, main, update, view)
+module F_Tuple exposing (init, main, update, view)
 
 import Browser
 import Views

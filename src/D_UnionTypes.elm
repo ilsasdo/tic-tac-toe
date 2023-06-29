@@ -1,4 +1,4 @@
-module C_UnionTypes exposing (init, main, update, view)
+module D_UnionTypes exposing (init, main, update, view)
 
 import Browser
 import Html exposing (div, text)
