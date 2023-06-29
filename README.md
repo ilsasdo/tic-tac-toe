@@ -4,9 +4,21 @@ Workshop project to learn Elm.
 
 ## Workshop
 
-* [Zero Setup](https://bit.ly/elmtictactoe)
+### Zero Setup
 
-or
+Edit online
+
+* [master](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/master)
+* [branch/tic-tac-toe-1](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/tic-tac-toe-1)
+* [branch/tic-tac-toe-2](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/tic-tac-toe-2)
+* [branch/tic-tac-toe-3](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/tic-tac-toe-3)
+* [branch/tic-tac-toe-4](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/tic-tac-toe-4)
+* [branch/tic-tac-toe-5](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/tic-tac-toe-5)
+* [branch/tic-tac-toe-6](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/tic-tac-toe-6)
+* [branch/tic-tac-toe-7](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/tic-tac-toe-7)
+* [branch/tic-tac-toe-8](https://elm-editor.com/?project-state=https://github.com/ilsasdo/tic-tac-toe/tree/tic-tac-toe-8)
+
+### Install Elm
 
 * [Install Elm](https://guide.elm-lang.org/install/elm.html)
   * [Install IntelliJ Elm Plugin](https://plugins.jetbrains.com/plugin/10268-elm)
